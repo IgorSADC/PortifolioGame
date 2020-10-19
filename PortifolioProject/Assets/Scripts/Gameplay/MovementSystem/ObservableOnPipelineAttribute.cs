@@ -1,7 +1,7 @@
 ﻿using System;
 
 [AttributeUsage(AttributeTargets.Field)]
-public class DirectionFieldAttribute : Attribute
+public class ObservableOnPipelineAttribute : Attribute
 {
     
 }

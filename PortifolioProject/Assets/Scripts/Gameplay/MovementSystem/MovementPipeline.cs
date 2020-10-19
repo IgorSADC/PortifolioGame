@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -13,53 +12,73 @@ namespace Gameplay.MovementSystem
     /// <summary>
     /// This callback represents a modular piece of the movement system.
     /// </summary>
-    public delegate void MovementBehaviour<T>(ref T referenceVariable);
+    public delegate void MovementBehaviour(ref Rigidbody referenceVariable);
 
     /// <summary>
     /// This class composes a series of behaviours (callbacks) responsable to make the character move.
     /// </summary>
-    public class MovementPipeline<T, C>
+    public class MovementPipeline<C>
     {
-        private event MovementBehaviour<T> movementPipeline;
-        private T target;
+        private event MovementBehaviour movementPipeline;
+        private Rigidbody target;
         private C caller;
+        private IEnumerable<FieldInfo> observableFields;
+        public Dictionary<string, FieldInfo> AttributesTranslation;
 
-        public MovementPipeline(T target, C caller)
+        public MovementPipeline(Rigidbody target, C caller)
         {
             this.target = target;
             this.caller = caller;
 
             //var flags = BindingFlags.GetField | BindingFlags.NonPublic;
             var fields = caller.GetType().GetFields(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance );
-            var observableFields = fields.Where(f => CheckForAttribute(f));
+            observableFields = fields.Where(f => CheckForAttribute(f));
 
-            foreach (var item in observableFields)
+            AttributesTranslation = new Dictionary<string, FieldInfo>();
+            foreach (var field in observableFields)
             {
-                Debug.Log(item);
+                AttributesTranslation.Add(field.Name, field);
             }
+
+            movementPipeline += ChangeVelocity;
+            movementPipeline += ClampVelocity;
                                                       
         }
 
         private bool CheckForAttribute(FieldInfo f)
         {
-            return Attribute.GetCustomAttribute(f, typeof(DirectionFieldAttribute)) != null;
-        }
-
-        public void ComposeBehaviour(MovementBehaviour<T> newBehaviour)
-        {
-            movementPipeline += newBehaviour;
-        
-        }
-        public void RemoveBehaviour(MovementBehaviour<T> oldBehaviour)
-        {
-            movementPipeline -= oldBehaviour;
-        
+            return Attribute.GetCustomAttribute(f, typeof(ObservableOnPipelineAttribute)) != null;
         }
 
         public void Execute(){
             movementPipeline(ref target);
         }
 
+        private object GetValueOfAttribute(string attr)
+        {
+            return AttributesTranslation[attr].GetValue(caller);
+        }
+
+#region DefaultBahaviours
+        private void ChangeVelocity(ref Rigidbody target)
+        {
+            var dir = (Vector3) GetValueOfAttribute(DefaultKeys.DirectionKey);
+            var maxSpeedChange = (float) GetValueOfAttribute(DefaultKeys.maxSpeedChange);
+            var maxSpeed = (float) GetValueOfAttribute(DefaultKeys.maxSpeedKey);
+
+            var desiredVelocity = dir * maxSpeed;
+            var speed = target.velocity;
+            speed.x = Mathf.MoveTowards(speed.x, desiredVelocity.x, maxSpeedChange);
+            speed.z = Mathf.MoveTowards(speed.z, desiredVelocity.z, maxSpeedChange);
+            target.velocity = speed;
+        }
+
+        private void ClampVelocity(ref Rigidbody target)
+        {
+            var maxSpeed = (float) GetValueOfAttribute(DefaultKeys.maxSpeedKey);
+            target.velocity = Vector3.ClampMagnitude(target.velocity, maxSpeed);
+        }
+#endregion
 
     }
 
