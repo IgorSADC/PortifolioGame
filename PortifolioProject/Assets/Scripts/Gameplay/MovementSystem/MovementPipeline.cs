@@ -37,6 +37,7 @@ namespace Gameplay.MovementSystem
             AttributesTranslation = new Dictionary<string, FieldInfo>();
             foreach (var field in observableFields)
             {
+                
                 AttributesTranslation.Add(field.Name, field);
             }
 
