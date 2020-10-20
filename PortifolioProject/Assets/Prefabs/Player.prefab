@@ -372,6 +372,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6001324191700251466}
+  - component: {fileID: 2036554704}
   m_Layer: 0
   m_Name: GunHolderR
   m_TagString: Untagged
@@ -393,6 +394,22 @@ Transform:
   m_Father: {fileID: 7724649495565037827}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2036554704
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1559367875003089715}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc545235da978144cb75c1f8237fd88e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pooledBulletsObjectsPerGun: 1
+  currentBulletQuantity: 20
+  GunScriptableObject: {fileID: 11400000, guid: 9c7412197f6793a4abbe0d2ac895d2b6,
+    type: 2}
 --- !u!1 &1561142256564411198
 GameObject:
   m_ObjectHideFlags: 0
@@ -402,6 +419,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3264877317664187063}
+  - component: {fileID: 2080314898}
   m_Layer: 0
   m_Name: GunHolderL
   m_TagString: Untagged
@@ -423,6 +441,22 @@ Transform:
   m_Father: {fileID: 7724649495565037827}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2080314898
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1561142256564411198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc545235da978144cb75c1f8237fd88e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pooledBulletsObjectsPerGun: 20
+  currentBulletQuantity: 20
+  GunScriptableObject: {fileID: 11400000, guid: 07f878e67c62ad94b8860359d355e3b8,
+    type: 2}
 --- !u!1 &8338985012280833563
 GameObject:
   m_ObjectHideFlags: 0
@@ -485,8 +519,56 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0cab897a2baece4a93f403919aba981, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxAcceleration: 5
+  maxAcceleration: 10
   maxSpeed: 5
+  dir: {x: 0, y: 0, z: 0}
+--- !u!1 &8668530392223141747
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1342657713233642246}
+  - component: {fileID: 764363483362369150}
+  m_Layer: 0
+  m_Name: GunHolderF
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1342657713233642246
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8668530392223141747}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.75}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7724649495565037827}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &764363483362369150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8668530392223141747}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc545235da978144cb75c1f8237fd88e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pooledBulletsObjectsPerGun: 20
+  currentBulletQuantity: 20
+  GunScriptableObject: {fileID: 11400000, guid: 07f878e67c62ad94b8860359d355e3b8,
+    type: 2}
 --- !u!1 &8677109669324408509
 GameObject:
   m_ObjectHideFlags: 0
@@ -519,6 +601,7 @@ Transform:
   - {fileID: 474846551}
   - {fileID: 3264877317664187063}
   - {fileID: 6001324191700251466}
+  - {fileID: 1342657713233642246}
   m_Father: {fileID: 7623468124733944828}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

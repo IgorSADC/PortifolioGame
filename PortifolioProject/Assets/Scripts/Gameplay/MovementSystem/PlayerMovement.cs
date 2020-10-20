@@ -13,7 +13,7 @@ namespace Gameplay.MovementSystem
 
         private Rigidbody rb;
         private MovementPipeline<PlayerMovement> movementPipeline;
-        [ObservableOnPipeline] public Vector3 dir;
+        [ObservableOnPipeline] private Vector3 dir;
         [ObservableOnPipeline] private float maxSpeedChange;
 
         private void Awake() 

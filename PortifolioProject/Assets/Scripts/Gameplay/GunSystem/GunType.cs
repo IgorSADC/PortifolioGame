@@ -2,10 +2,9 @@ namespace Gameplay.GunSystem
 {
     public enum GunType
     {
-        Pistol, 
-        Shotgun,
-        MachineGun, 
-        Taser
+        Right,
+        Left,
+        Front
     }
 
 }

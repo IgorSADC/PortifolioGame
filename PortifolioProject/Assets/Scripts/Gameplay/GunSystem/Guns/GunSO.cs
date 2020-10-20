@@ -6,9 +6,9 @@ using UnityEngine;
 namespace Gameplay.GunSystem
 {
     public enum BulletDistributionMethod {
-        RadialDistribution
-    }
-    public delegate void BulletsDistributionFunction(ref GameObject[] bullets);
+        RadialDistribution    
+        }
+    public delegate void BulletsDistributionFunction(ref GameObject[] bullets, GunType type);
     
 
     [CreateAssetMenu(fileName = "NewGun", menuName = "GunSystem/CreateNewGun", order = 0)]
@@ -23,7 +23,9 @@ namespace Gameplay.GunSystem
 
         private Dictionary<BulletDistributionMethod, BulletsDistributionFunction> MethodMapping;
 
-        private void OnEnable() {
+        private void OnEnable() 
+        {
+            //FAZER ISSO COM REFLECTION EM UM SINGLETON DEPOIS
             MethodMapping = new Dictionary<BulletDistributionMethod, BulletsDistributionFunction>();
             MethodMapping.Add(BulletDistributionMethod.RadialDistribution,
                                             BulletDistributionBehaviouors.RadialDistribution);

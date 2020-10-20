@@ -15,6 +15,7 @@ namespace Gameplay.GunSystem
         [SerializeField] private int currentBulletQuantity;
 
         public GunSO GunScriptableObject;
+        private GunType gunType {get => GunScriptableObject.Gun; }
         private GameObject bulletPrefab {get => GunScriptableObject.BulletPrefab ;}
         public bool HasGun { get => GunScriptableObject != null; }
         public int NumberOfBulletsPerShot { get => GunScriptableObject.BulletCost; }
@@ -27,7 +28,7 @@ namespace Gameplay.GunSystem
         private void Shoot()
         {
             var bullets = bulletPool.GetObjects(NumberOfBulletsPerShot);
-            GunScriptableObject.GetDistributionMethod(ref bullets);
+            GunScriptableObject.GetDistributionMethod(ref bullets, gunType);
         }
 
         private void ChangeGun(GunSO newGun)
@@ -37,7 +38,7 @@ namespace Gameplay.GunSystem
 
         private void Update() {
             if(Input.GetKeyDown(KeyCode.Mouse0))
-            Shoot();
+                Shoot();
         }
 
 

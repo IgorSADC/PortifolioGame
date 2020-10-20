@@ -25,7 +25,7 @@ namespace Utils.DesignPatterns{
                 CreateNewObj();
             }
         }
-        public GameObject GetObject() 
+        public GameObject GetObject(bool returnActive = true) 
         {
             foreach (var obj in _pool)
             {
@@ -35,11 +35,13 @@ namespace Utils.DesignPatterns{
                     return obj;
                 }
             }
-            var newObj = CreateActivatedObject();
+            var newObj = CreateNewObj();
+            if(returnActive)
+                Activate(newObj);
             return newObj;
         }
 
-        public GameObject[] GetObjects(int nObjs)
+        public GameObject[] GetObjects(int nObjs, bool returnActive = true)
         {
             var objs = new GameObject[nObjs];
             var cIndex = 0;
@@ -47,7 +49,8 @@ namespace Utils.DesignPatterns{
             {
                 if(!obj.activeSelf)
                 {
-                    Activate(obj);
+                    if(returnActive)
+                        Activate(obj);
                     objs[cIndex] = obj;
                     cIndex++;
                     if (cIndex == nObjs)
@@ -56,20 +59,16 @@ namespace Utils.DesignPatterns{
             }
             while(cIndex < nObjs)
             {
-                var newObj = CreateActivatedObject();
+
+                var newObj = CreateNewObj();
+                if(returnActive)
+                    Activate(newObj);
                 objs[cIndex] = newObj;
                 cIndex++;
             }
 
 
             return objs;
-        }
-
-        private GameObject CreateActivatedObject()
-        {
-            var newObj = CreateNewObj();
-            Activate(newObj);
-            return newObj;
         }
 
         private GameObject CreateNewObj()
