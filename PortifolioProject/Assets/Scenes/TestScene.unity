@@ -264,7 +264,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 6483026a89c1d5e4ca927904c2d024ab, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -314,6 +314,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 295394010, guid: 20f39623234e963418908365a3eb14da, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 4ac55173e5251044b894a47841b5581d, type: 2}
+    - target: {fileID: 2036554704, guid: 20f39623234e963418908365a3eb14da, type: 3}
+      propertyPath: shootButton
+      value: 324
+      objectReference: {fileID: 0}
+    - target: {fileID: 2036554704, guid: 20f39623234e963418908365a3eb14da, type: 3}
+      propertyPath: pooledBulletsObjectsPerGun
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2080314898, guid: 20f39623234e963418908365a3eb14da, type: 3}
+      propertyPath: shootButton
+      value: 323
+      objectReference: {fileID: 0}
+    - target: {fileID: 2080314898, guid: 20f39623234e963418908365a3eb14da, type: 3}
+      propertyPath: pooledBulletsObjectsPerGun
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 764363483362369150, guid: 20f39623234e963418908365a3eb14da,
         type: 3}
       propertyPath: GunScriptableObject
@@ -323,12 +343,12 @@ PrefabInstance:
     - target: {fileID: 1559367875003089715, guid: 20f39623234e963418908365a3eb14da,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1561142256564411198, guid: 20f39623234e963418908365a3eb14da,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7623468124733944828, guid: 20f39623234e963418908365a3eb14da,
         type: 3}
@@ -389,6 +409,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 8668530392223141747, guid: 20f39623234e963418908365a3eb14da,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 20f39623234e963418908365a3eb14da, type: 3}

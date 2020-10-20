@@ -20,6 +20,8 @@ namespace Gameplay.GunSystem
         public bool HasGun { get => GunScriptableObject != null; }
         public int NumberOfBulletsPerShot { get => GunScriptableObject.BulletCost; }
 
+        [SerializeField] private KeyCode shootButton;
+
         private void Awake() 
         {
             bulletPool = new ObjectPool(bulletPrefab, pooledBulletsObjectsPerGun, this.transform);
@@ -37,7 +39,7 @@ namespace Gameplay.GunSystem
         }
 
         private void Update() {
-            if(Input.GetKeyDown(KeyCode.Mouse0))
+            if(Input.GetKeyDown(shootButton))
                 Shoot();
         }
 
