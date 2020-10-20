@@ -307,6 +307,28 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2036554702 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1559367875003089715, guid: 20f39623234e963418908365a3eb14da,
+    type: 3}
+  m_PrefabInstance: {fileID: 3782335525668209786}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2036554704
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2036554702}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc545235da978144cb75c1f8237fd88e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pooledBulletsObjectsPerGun: 1
+  currentBulletQuantity: 20
+  GunScriptableObject: {fileID: 11400000, guid: 9c7412197f6793a4abbe0d2ac895d2b6,
+    type: 2}
 --- !u!1001 &3782335525668209786
 PrefabInstance:
   m_ObjectHideFlags: 0

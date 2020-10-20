@@ -8,12 +8,14 @@ namespace Utils.DesignPatterns{
         public GameObject ObjectPrefab { get; private set; }
         public int NumberOfObjects { get; private set; }
         private List<GameObject> _pool;
+        private Transform parentToObjs;
 
-        public ObjectPool(GameObject prefab, int numberOfObjects)
+        public ObjectPool(GameObject prefab, int numberOfObjects, Transform parentToObjs = null)
         {
             _pool = new List<GameObject>();
             ObjectPrefab = prefab;
             NumberOfObjects = numberOfObjects;
+            this.parentToObjs = parentToObjs;
             GeneratePool();
         }
         private void GeneratePool()
@@ -29,12 +31,44 @@ namespace Utils.DesignPatterns{
             {
                 if (!obj.activeSelf) 
                 {
-                    obj.SetActive(true);
+                    Activate(obj);
                     return obj;
                 }
             }
+            var newObj = CreateActivatedObject();
+            return newObj;
+        }
+
+        public GameObject[] GetObjects(int nObjs)
+        {
+            var objs = new GameObject[nObjs];
+            var cIndex = 0;
+            foreach (var obj in _pool)
+            {
+                if(!obj.activeSelf)
+                {
+                    Activate(obj);
+                    objs[cIndex] = obj;
+                    cIndex++;
+                    if (cIndex == nObjs)
+                        break;
+                }
+            }
+            while(cIndex < nObjs)
+            {
+                var newObj = CreateActivatedObject();
+                objs[cIndex] = newObj;
+                cIndex++;
+            }
+
+
+            return objs;
+        }
+
+        private GameObject CreateActivatedObject()
+        {
             var newObj = CreateNewObj();
-            newObj.SetActive(true);
+            Activate(newObj);
             return newObj;
         }
 
@@ -42,6 +76,7 @@ namespace Utils.DesignPatterns{
         {
             var newObj = Object.Instantiate(ObjectPrefab);
             newObj.SetActive(false);
+            newObj.transform.parent = parentToObjs;
             var IPool = newObj.GetComponent<IPool>();
             IPool.DeactivateObject += Deactivate;
             IPool.ActivateObject += Activate;
@@ -58,6 +93,7 @@ namespace Utils.DesignPatterns{
         private void Activate(GameObject obj) 
         {
             obj.SetActive(true);
+            obj.transform.parent = parentToObjs;
             obj.GetComponent<IPool>().Initialize();
         }
 
