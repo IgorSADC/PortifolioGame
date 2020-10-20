@@ -20,6 +20,17 @@ namespace Utils.Extensions
             return vector;
         
         }
+
+        
+    }
+
+    public static class CameraExtensions
+    {
+        public static Vector3 GetMousePosition(this Camera cam)
+        {
+            var mousePos = Input.mousePosition;
+            return cam.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, cam.nearClipPlane));
+        }
     }
 
 }

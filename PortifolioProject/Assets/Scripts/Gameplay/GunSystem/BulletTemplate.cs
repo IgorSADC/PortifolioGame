@@ -13,7 +13,7 @@ public class BulletTemplate : MonoBehaviour, IPool
     public virtual void Initialize()
     {
         this.transform.localPosition = Vector3.zero;
-        this.transform.rotation = Quaternion.Euler(0,0,0);
+        this.transform.localRotation = transform.parent.localRotation;
         this.transform.parent = null;
         StartCoroutine(DestroyingAfterTime());
     }
