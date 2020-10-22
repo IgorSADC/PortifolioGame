@@ -14,12 +14,12 @@ namespace Gameplay.MovementSystem.Behaviours
     }
     public class DefaultBehavioursRigidbody<C>
     {
-        public MovementPipeline<C> TargetPipeline { get; set; }
-        private static Dictionary<RigibodyBehaviours, MovementBehaviour> _mappingDict;
-        public DefaultBehavioursRigidbody(MovementPipeline<C> pipeline)
+        public MovementPipeline<Rigidbody,C> TargetPipeline { get; set; }
+        private static Dictionary<RigibodyBehaviours, MovementBehaviour<Rigidbody>> _mappingDict;
+        public DefaultBehavioursRigidbody(MovementPipeline<Rigidbody,C> pipeline)
         {
             TargetPipeline = pipeline;
-            _mappingDict = new Dictionary<RigibodyBehaviours, MovementBehaviour>();
+            _mappingDict = new Dictionary<RigibodyBehaviours, MovementBehaviour<Rigidbody>>();
             _mappingDict.Add(RigibodyBehaviours.ChangeVelocity, ChangeVelocity);
             _mappingDict.Add(RigibodyBehaviours.ClampVelocity, ClampVelocity);
             

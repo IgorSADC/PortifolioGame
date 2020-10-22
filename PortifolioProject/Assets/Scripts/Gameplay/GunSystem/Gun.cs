@@ -42,11 +42,13 @@ namespace Gameplay.GunSystem
             GunScriptableObject = newGun;
         }
 
-        public void RemoveGun(){
+        public void RemoveGun()
+        {
             GunScriptableObject = null;
         }
 
-        private void Update() {
+        private void Update() 
+        {
             if(Input.GetKeyDown(shootButton) && HasGun)
                 Shoot();
         }

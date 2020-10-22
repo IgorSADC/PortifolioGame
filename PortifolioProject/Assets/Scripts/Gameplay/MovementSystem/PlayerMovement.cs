@@ -10,11 +10,11 @@ using Gameplay.MovementSystem.Behaviours;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] private float maxAcceleration;
+    [SerializeField] private float maxAcceleration =1f;
     [SerializeField] [ObservableOnPipeline] private float maxSpeed;
 
     private Rigidbody rb;
-    private MovementPipeline<PlayerMovement> movementPipeline;
+    private MovementPipeline<Rigidbody,PlayerMovement> movementPipeline;
     private DefaultBehavioursRigidbody<PlayerMovement> behavioursRigidbody;
     [ObservableOnPipeline] private Vector3 dir;
     [ObservableOnPipeline] private float maxSpeedChange;
@@ -26,7 +26,7 @@ public class PlayerMovement : MonoBehaviour
     private void Awake() 
     {
         rb = this.GetComponent<Rigidbody>();
-        movementPipeline = new MovementPipeline<PlayerMovement>(rb, this);
+        movementPipeline = new MovementPipeline<Rigidbody,PlayerMovement>(rb, this);
         behavioursRigidbody = new DefaultBehavioursRigidbody<PlayerMovement>(movementPipeline);
         behavioursRigidbody.ComposeBehaviours(RigibodyBehaviours.ChangeVelocity,
                                             RigibodyBehaviours.ClampVelocity);

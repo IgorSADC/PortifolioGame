@@ -18,12 +18,14 @@ public class BulletTemplate : MonoBehaviour, IPool
         StartCoroutine(DestroyingAfterTime());
     }
 
-    private IEnumerator DestroyingAfterTime(){
+    private IEnumerator DestroyingAfterTime()
+    {
         yield return new WaitForSeconds(timeToLive);
         DeactivateObject(this.gameObject);
     }
 
-    private void Update() {
+    private void Update() 
+    {
         transform.position += transform.forward * Time.deltaTime * 10f;
     }
 }

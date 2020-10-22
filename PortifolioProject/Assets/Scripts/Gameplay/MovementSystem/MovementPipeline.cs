@@ -9,22 +9,22 @@ namespace Gameplay.MovementSystem
     /// <summary>
     /// This callback represents a modular piece of the movement system.
     /// </summary>
-    public delegate void MovementBehaviour(ref Rigidbody referenceVariable);
+    public delegate void MovementBehaviour<T>(ref T referenceVariable);
 
     /// <summary>
     /// This class composes a series of behaviours (callbacks) responsable to make the character move. The system is organized by events instead of nodes.
     /// The limitation is that functions must have the same signature.
     /// I am going to build a node based one on the future.
     /// </summary>
-    public class MovementPipeline<C>
+    public class MovementPipeline<T,C>
     {
-        public event MovementBehaviour movementPipeline;
-        private Rigidbody target;
+        public event MovementBehaviour<T> movementPipeline;
+        private T target;
         private C caller;
         private IEnumerable<FieldInfo> observableFields;
         public Dictionary<string, FieldInfo> AttributesTranslation;
 
-        public MovementPipeline(Rigidbody target, C caller)
+        public MovementPipeline(T target, C caller)
         {
             this.target = target;
             this.caller = caller;

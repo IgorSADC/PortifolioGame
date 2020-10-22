@@ -15,7 +15,7 @@ public class FollowTarget : MonoBehaviour
     [ObservableOnPipeline] private Vector3 dir;
 
     private Rigidbody rb;
-    private MovementPipeline<FollowTarget> movementPipeline;
+    private MovementPipeline<Rigidbody,FollowTarget> movementPipeline;
     private DefaultBehavioursRigidbody<FollowTarget> behavioursRigidbody;
 
 
@@ -28,7 +28,7 @@ public class FollowTarget : MonoBehaviour
         if(copyOffsetFromPosition)
             offset = myTransformReference.position;
         rb = GetComponent<Rigidbody>();
-        movementPipeline = new MovementPipeline<FollowTarget>(rb, this);
+        movementPipeline = new MovementPipeline<Rigidbody,FollowTarget>(rb, this);
         behavioursRigidbody = new DefaultBehavioursRigidbody<FollowTarget>(movementPipeline);
         behavioursRigidbody.ComposeBehaviours(RigibodyBehaviours.ChangeVelocity,
                                             RigibodyBehaviours.ClampVelocity);
