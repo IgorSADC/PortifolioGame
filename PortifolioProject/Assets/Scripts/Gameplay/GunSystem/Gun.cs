@@ -7,39 +7,89 @@ using Gameplay.GunSystem.Events;
 
 namespace Gameplay.GunSystem
 {
-    public delegate bool ShotController();
     public class Gun : MonoBehaviour
     {
-        public int pooledBulletsObjectsPerGun = 20;
+        public int pooledBulletsObjectsPerGun = 8;
 
         private ObjectPool bulletPool;
 
-        [SerializeField] private int currentBulletQuantity;
+        [SerializeField] private int currentBulletOnCartdrige;
+        [SerializeField] private int spareAmmunition;
 
         public GunSO GunScriptableObject;
         private GunType gunType {get => GunScriptableObject.Gun; }
         private GameObject bulletPrefab {get => GunScriptableObject.BulletPrefab ;}
-        public bool HasGun { get => GunScriptableObject != null; }
-        public int NumberOfBulletsPerShot { get => GunScriptableObject.BulletCost; }
+        private int BulletMaxQuantityPerCartridge {get => GunScriptableObject.BulletsPerCartridge;}
+        private bool HasGun { get => GunScriptableObject != null; }
+        private int NumberOfBulletsPerShot { get => GunScriptableObject.BulletCost; }
+        private bool canShoot {get => currentBulletOnCartdrige >= NumberOfBulletsPerShot ;}
 
         [SerializeField] private KeyCode shootButton;
 
         private void Awake() 
         {
             bulletPool = new ObjectPool(bulletPrefab, pooledBulletsObjectsPerGun, this.transform);
+            currentBulletOnCartdrige = BulletMaxQuantityPerCartridge;
             
         }
 
-        private void Shoot()
+        public void Shoot()
         {
-            var bullets = bulletPool.GetObjects(NumberOfBulletsPerShot);
-            GunScriptableObject.GetDistributionMethod(ref bullets, gunType);
-            GunSystemBroker.ActivateOnGunShot(this.gameObject);
+            var shouldDestroy = false;
+            if(HasGun)
+            {
+                if(canShoot)
+                {
+                    var bullets = bulletPool.GetObjects(NumberOfBulletsPerShot);
+                    GunScriptableObject.GetDistributionMethod(ref bullets, gunType);
+                    currentBulletOnCartdrige -= NumberOfBulletsPerShot;
+                    if(currentBulletOnCartdrige <= 0) 
+                        shouldDestroy = !Recharge();
+                    
+
+                }
+                else 
+                    shouldDestroy = !Recharge();
+            }
+
+            if(shouldDestroy)
+                RemoveGun();
+                 
+        }
+
+        public bool Recharge()
+        {
+            if(spareAmmunition == 0) 
+            {
+                return false;
+            }
+
+            var d = BulletMaxQuantityPerCartridge - currentBulletOnCartdrige;
+
+            if (CheckForSpareAmmunition(d))
+            {
+                spareAmmunition -= d;
+                currentBulletOnCartdrige += d;
+            }
+            else
+            {
+                currentBulletOnCartdrige += spareAmmunition;
+                spareAmmunition = 0;
+                
+            }
+            return true;
+        }
+
+        private bool CheckForSpareAmmunition(int d)
+        {
+            return spareAmmunition >= d;
         }
 
         public void ChangeGun(GunSO newGun)
         {
             GunScriptableObject = newGun;
+            spareAmmunition = 0;
+            currentBulletOnCartdrige = BulletMaxQuantityPerCartridge;
         }
 
         public void RemoveGun()
@@ -47,9 +97,21 @@ namespace Gameplay.GunSystem
             GunScriptableObject = null;
         }
 
+        public void AddBullets(int nBullets)
+        {
+            var d = BulletMaxQuantityPerCartridge - currentBulletOnCartdrige;
+            if(nBullets <= d)
+                currentBulletOnCartdrige += nBullets;
+            else 
+            {
+                currentBulletOnCartdrige += d;
+                spareAmmunition += nBullets - d;
+            }
+        }
+
         private void Update() 
         {
-            if(Input.GetKeyDown(shootButton) && HasGun)
+            if(Input.GetKeyDown(shootButton))
                 Shoot();
         }
 

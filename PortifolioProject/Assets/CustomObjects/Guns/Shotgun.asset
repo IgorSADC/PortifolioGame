@@ -16,4 +16,5 @@ MonoBehaviour:
   BulletPrefab: {fileID: 3977512146136651518, guid: 8fb0673b591420a419fe27f83e359826,
     type: 3}
   DistributionMethod: 0
-  BulletCost: 5
+  BulletCost: 3
+  BulletsPerCartridge: 15
