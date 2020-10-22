@@ -423,6 +423,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: aa06fd96706481e4387611e9d1c59ef6,
         type: 2}
+    - target: {fileID: 764363483362369150, guid: 20f39623234e963418908365a3eb14da,
+        type: 3}
+      propertyPath: shootButton
+      value: 102
+      objectReference: {fileID: 0}
     - target: {fileID: 1559367875003089715, guid: 20f39623234e963418908365a3eb14da,
         type: 3}
       propertyPath: m_IsActive
@@ -496,7 +501,7 @@ PrefabInstance:
     - target: {fileID: 8668530392223141747, guid: 20f39623234e963418908365a3eb14da,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 20f39623234e963418908365a3eb14da, type: 3}

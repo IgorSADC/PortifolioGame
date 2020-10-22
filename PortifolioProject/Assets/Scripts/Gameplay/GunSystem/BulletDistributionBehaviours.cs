@@ -6,7 +6,7 @@ using System;
 
 
 namespace Gameplay.GunSystem{
-    public class BulletDistributionBehaviouors
+    public class BulletDistributionBehaviours
     {
         /// <summary>
         /// This function distribute a series of bullets into an arc.It's higly recommended to use an even bullet number
@@ -19,7 +19,6 @@ namespace Gameplay.GunSystem{
                 RadialDistributionTwoHanded(bulletsGameObjects);
             else
                 RadialDistributionOneHanded (bulletsGameObjects, type);
-
         }
 
         private static void RadialDistributionTwoHanded(GameObject[] bulletsGameObjects)

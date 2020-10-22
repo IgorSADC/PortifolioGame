@@ -18,21 +18,8 @@ namespace Gameplay.GunSystem
         public GameObject BulletPrefab;
         public BulletDistributionMethod DistributionMethod;
         public int BulletCost;
-        public BulletsDistributionFunction GetDistributionMethod { get => MethodMapping[DistributionMethod]; }
-
-
-        private Dictionary<BulletDistributionMethod, BulletsDistributionFunction> MethodMapping;
-
-        private void OnEnable() 
-        {
-            //FAZER ISSO COM REFLECTION EM UM SINGLETON DEPOIS
-            MethodMapping = new Dictionary<BulletDistributionMethod, BulletsDistributionFunction>();
-            MethodMapping.Add(BulletDistributionMethod.RadialDistribution,
-                                            BulletDistributionBehaviouors.RadialDistribution);
-        }
-
-
-
+        public BulletsDistributionFunction GetDistributionMethod { get => GunMethodMapping.GetMethodByType(DistributionMethod); }
+    
     }
 
 }

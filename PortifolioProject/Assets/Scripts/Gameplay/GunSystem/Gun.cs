@@ -6,6 +6,7 @@ using Utils.DesignPatterns;
 
 namespace Gameplay.GunSystem
 {
+    public delegate bool ShotController();
     public class Gun : MonoBehaviour
     {
         public int pooledBulletsObjectsPerGun = 20;
@@ -25,21 +26,27 @@ namespace Gameplay.GunSystem
         private void Awake() 
         {
             bulletPool = new ObjectPool(bulletPrefab, pooledBulletsObjectsPerGun, this.transform);
+            
         }
 
         private void Shoot()
         {
             var bullets = bulletPool.GetObjects(NumberOfBulletsPerShot);
             GunScriptableObject.GetDistributionMethod(ref bullets, gunType);
+            GunSystemBroker.ActivateOnGunShot(this.gameObject);
         }
 
-        private void ChangeGun(GunSO newGun)
+        public void ChangeGun(GunSO newGun)
         {
             GunScriptableObject = newGun;
         }
 
+        public void RemoveGun(){
+            GunScriptableObject = null;
+        }
+
         private void Update() {
-            if(Input.GetKeyDown(shootButton))
+            if(Input.GetKeyDown(shootButton) && HasGun)
                 Shoot();
         }
 
