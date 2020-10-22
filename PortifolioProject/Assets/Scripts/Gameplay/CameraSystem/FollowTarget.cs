@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Gameplay.MovementSystem;
+using Gameplay.MovementSystem.Behaviours;
+
 public class FollowTarget : MonoBehaviour
 {
     public Transform target;
@@ -14,6 +16,7 @@ public class FollowTarget : MonoBehaviour
 
     private Rigidbody rb;
     private MovementPipeline<FollowTarget> movementPipeline;
+    private DefaultBehavioursRigidbody<FollowTarget> behavioursRigidbody;
 
 
 //Strangely this makes differente. You can see it by profiling the project. Unity doesn't holds the transform, it actually calls a method everytime you type transform.
@@ -26,6 +29,9 @@ public class FollowTarget : MonoBehaviour
             offset = myTransformReference.position;
         rb = GetComponent<Rigidbody>();
         movementPipeline = new MovementPipeline<FollowTarget>(rb, this);
+        behavioursRigidbody = new DefaultBehavioursRigidbody<FollowTarget>(movementPipeline);
+        behavioursRigidbody.ComposeBehaviours(RigibodyBehaviours.ChangeVelocity,
+                                            RigibodyBehaviours.ClampVelocity);
     }
 
     private void Update() {
