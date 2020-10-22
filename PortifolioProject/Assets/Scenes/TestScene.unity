@@ -121,6 +121,49 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &191184368
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 191184370}
+  - component: {fileID: 191184369}
+  m_Layer: 0
+  m_Name: BulletBehaviours
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &191184369
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 191184368}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49fe0b45f62f99e48bbe9d84fd2fa91c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &191184370
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 191184368}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.7788832, y: 1.0916264, z: 12.356414}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1017402058
 GameObject:
   m_ObjectHideFlags: 0
@@ -450,6 +493,10 @@ PrefabInstance:
       propertyPath: pooledBulletsObjectsPerGun
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 2036554704, guid: 20f39623234e963418908365a3eb14da, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2080314898, guid: 20f39623234e963418908365a3eb14da, type: 3}
       propertyPath: shootButton
       value: 323
@@ -458,16 +505,25 @@ PrefabInstance:
       propertyPath: pooledBulletsObjectsPerGun
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 2080314898, guid: 20f39623234e963418908365a3eb14da, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 764363483362369150, guid: 20f39623234e963418908365a3eb14da,
         type: 3}
       propertyPath: GunScriptableObject
       value: 
-      objectReference: {fileID: 11400000, guid: aa06fd96706481e4387611e9d1c59ef6,
+      objectReference: {fileID: 11400000, guid: b16b985000d593440ad8f7d001b6f547,
         type: 2}
     - target: {fileID: 764363483362369150, guid: 20f39623234e963418908365a3eb14da,
         type: 3}
       propertyPath: shootButton
       value: 102
+      objectReference: {fileID: 0}
+    - target: {fileID: 764363483362369150, guid: 20f39623234e963418908365a3eb14da,
+        type: 3}
+      propertyPath: pooledBulletsObjectsPerGun
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1559367875003089715, guid: 20f39623234e963418908365a3eb14da,
         type: 3}
@@ -553,6 +609,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7277209225829608337, guid: fb3a1e285ca998a43b03b9ee88ccb1bd,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7277209225829608337, guid: fb3a1e285ca998a43b03b9ee88ccb1bd,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7277209225829608337, guid: fb3a1e285ca998a43b03b9ee88ccb1bd,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7277209225925458412, guid: fb3a1e285ca998a43b03b9ee88ccb1bd,
         type: 3}
       propertyPath: m_Name
@@ -561,7 +632,7 @@ PrefabInstance:
     - target: {fileID: 7277209225925458415, guid: fb3a1e285ca998a43b03b9ee88ccb1bd,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 3.427
       objectReference: {fileID: 0}
     - target: {fileID: 7277209225925458415, guid: fb3a1e285ca998a43b03b9ee88ccb1bd,
         type: 3}
@@ -571,7 +642,7 @@ PrefabInstance:
     - target: {fileID: 7277209225925458415, guid: fb3a1e285ca998a43b03b9ee88ccb1bd,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -2.574
       objectReference: {fileID: 0}
     - target: {fileID: 7277209225925458415, guid: fb3a1e285ca998a43b03b9ee88ccb1bd,
         type: 3}

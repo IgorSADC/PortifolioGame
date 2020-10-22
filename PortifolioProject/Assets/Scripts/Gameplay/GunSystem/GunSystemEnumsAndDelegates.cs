@@ -2,9 +2,11 @@ using UnityEngine;
 
 namespace Gameplay.GunSystem
 {
-    public enum BulletDistributionMethod {
-        RadialDistribution    
-        }
+    public enum BulletDistributionMethod 
+    {
+        RadialDistribution,
+        Spray
+    }
 
     public enum GunType
     {

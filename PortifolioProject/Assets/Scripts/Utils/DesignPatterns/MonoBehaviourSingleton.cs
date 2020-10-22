@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Utils
+namespace Utils.DesignPatterns
 {
 
     public class MonoBehaviourSingleton<T> : MonoBehaviour where T : MonoBehaviourSingleton<T> 
     {
-        private static T instance;
+        protected static T instance;
         public T Instance { get =>instance; }
 
         public static bool IsInitialize { get =>  instance != null;  }

@@ -9,6 +9,8 @@ namespace Utils.DesignPatterns{
         event OnModifyPool DeactivateObject;
         event OnModifyPool ActivateObject;
 
+        bool IsAvailable { get; set; }
+
         void Initialize();
     }
 }

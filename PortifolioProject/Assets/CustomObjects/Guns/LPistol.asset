@@ -17,3 +17,4 @@ MonoBehaviour:
     type: 3}
   DistributionMethod: 0
   BulletCost: 1
+  BulletsPerCartridge: 25

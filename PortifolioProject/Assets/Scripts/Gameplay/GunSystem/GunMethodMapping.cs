@@ -19,6 +19,9 @@ namespace Gameplay.GunSystem{
             methodMapping = new Dictionary<BulletDistributionMethod, BulletsDistributionFunction>();
             methodMapping.Add(BulletDistributionMethod.RadialDistribution,
                                             BulletDistributionBehaviours.RadialDistribution);
+            methodMapping.Add(BulletDistributionMethod.Spray,
+                                            BulletDistributionBehaviours.SprayBulletBehaviour);
+                    
         }
 
         private static GunMethodMapping GetInstance(){

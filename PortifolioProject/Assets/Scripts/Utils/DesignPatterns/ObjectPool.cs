@@ -25,20 +25,27 @@ namespace Utils.DesignPatterns{
                 CreateNewObj();
             }
         }
-        public GameObject GetObject(bool returnActive = true) 
+        public GameObject GetObject(bool returnActive = true)
         {
             foreach (var obj in _pool)
             {
-                if (!obj.activeSelf) 
+                if (!obj.GetComponent<IPool>().IsAvailable)
                 {
                     Activate(obj);
                     return obj;
                 }
             }
             var newObj = CreateNewObj();
-            if(returnActive)
-                Activate(newObj);
+            InitializeOrActivate(returnActive, newObj);
             return newObj;
+        }
+
+        private void InitializeOrActivate(bool returnActive, GameObject newObj)
+        {
+            if (returnActive)
+                Activate(newObj);
+            else
+                InitializeObj(newObj);
         }
 
         public GameObject[] GetObjects(int nObjs, bool returnActive = true)
@@ -47,10 +54,9 @@ namespace Utils.DesignPatterns{
             var cIndex = 0;
             foreach (var obj in _pool)
             {
-                if(!obj.activeSelf)
+                if(!!obj.GetComponent<IPool>().IsAvailable)
                 {
-                    if(returnActive)
-                        Activate(obj);
+                    InitializeOrActivate(returnActive, obj);
                     objs[cIndex] = obj;
                     cIndex++;
                     if (cIndex == nObjs)
@@ -61,13 +67,10 @@ namespace Utils.DesignPatterns{
             {
 
                 var newObj = CreateNewObj();
-                if(returnActive)
-                    Activate(newObj);
+                InitializeOrActivate(returnActive, newObj);
                 objs[cIndex] = newObj;
                 cIndex++;
             }
-
-
             return objs;
         }
 
@@ -84,16 +87,29 @@ namespace Utils.DesignPatterns{
             return newObj;
         }
 
-        private void Deactivate(GameObject obj) 
+        public void Deactivate(GameObject obj) 
         {
+            if(!_pool.Contains(obj))
+                return;
             obj.SetActive(false);
+            var IPool = obj.GetComponent<IPool>(); 
+            IPool.IsAvailable = true;
         }
 
-        private void Activate(GameObject obj) 
+        public void Activate(GameObject obj)
         {
+            if(!_pool.Contains(obj))
+                return;
             obj.SetActive(true);
+            InitializeObj(obj);
+        }
+
+        private void InitializeObj(GameObject obj)
+        {
             obj.transform.parent = parentToObjs;
             obj.GetComponent<IPool>().Initialize();
+            var IPool = obj.GetComponent<IPool>(); 
+            IPool.IsAvailable = false;
         }
 
     }

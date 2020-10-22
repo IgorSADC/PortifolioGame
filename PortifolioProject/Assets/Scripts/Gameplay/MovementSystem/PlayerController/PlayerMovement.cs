@@ -38,6 +38,7 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         dir = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+        dir = Vector3.ClampMagnitude(dir, 1);
         RotateToMouse();
     }
 

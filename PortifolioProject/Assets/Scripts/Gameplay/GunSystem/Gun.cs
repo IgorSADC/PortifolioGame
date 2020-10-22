@@ -30,7 +30,7 @@ namespace Gameplay.GunSystem
         {
             bulletPool = new ObjectPool(bulletPrefab, pooledBulletsObjectsPerGun, this.transform);
             currentBulletOnCartdrige = BulletMaxQuantityPerCartridge;
-            
+            GunSystemBroker.OnBulletDone += ActivateBullet;
         }
 
         public void Shoot()
@@ -40,13 +40,12 @@ namespace Gameplay.GunSystem
             {
                 if(canShoot)
                 {
-                    var bullets = bulletPool.GetObjects(NumberOfBulletsPerShot);
+                    var bullets = bulletPool.GetObjects(NumberOfBulletsPerShot, false);
                     GunScriptableObject.GetDistributionMethod(ref bullets, gunType);
                     currentBulletOnCartdrige -= NumberOfBulletsPerShot;
                     if(currentBulletOnCartdrige <= 0) 
                         shouldDestroy = !Recharge();
                     
-
                 }
                 else 
                     shouldDestroy = !Recharge();
@@ -109,14 +108,16 @@ namespace Gameplay.GunSystem
             }
         }
 
+        private void ActivateBullet(GameObject bullet)
+        {
+            bulletPool.Activate(bullet);
+        }
+
         private void Update() 
         {
             if(Input.GetKeyDown(shootButton))
                 Shoot();
         }
-
-
-        
     }
 
 }
