@@ -132,6 +132,8 @@ GameObject:
   - component: {fileID: 1017402061}
   - component: {fileID: 1017402060}
   - component: {fileID: 1017402059}
+  - component: {fileID: 1017402062}
+  - component: {fileID: 1017402063}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -204,6 +206,39 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!114 &1017402062
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1017402058}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1dec0643654e1647a50024f719106e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 1526176656}
+  copyOffsetFromPosition: 1
+  offset: {x: 0, y: 8.69, z: 0}
+  maxSpeed: 4.5
+  maxSpeedChange: 0.5
+--- !u!54 &1017402063
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1017402058}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 0
 --- !u!1 &1367182423
 GameObject:
   m_ObjectHideFlags: 0
@@ -296,6 +331,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!4 &1526176656 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7623468124733944828, guid: 20f39623234e963418908365a3eb14da,
+    type: 3}
+  m_PrefabInstance: {fileID: 3782335525668209786}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1975932286
 GameObject:
   m_ObjectHideFlags: 0

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Utils.DesignPatterns;
+using Gameplay.GunSystem.Events;
 
 
 namespace Gameplay.GunSystem
