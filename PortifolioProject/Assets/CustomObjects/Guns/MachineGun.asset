@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fcc28fcbf54427c459525e1781bf4671, type: 3}
-  m_Name: TestSpray
+  m_Name: MachineGun
   m_EditorClassIdentifier: 
   Gun: 2
   BulletPrefab: {fileID: 3977512146136651518, guid: 8fb0673b591420a419fe27f83e359826,
     type: 3}
   DistributionMethod: 1
   BulletCost: 5
-  BulletsPerCartridge: 100
+  BulletsPerCartridge: 25

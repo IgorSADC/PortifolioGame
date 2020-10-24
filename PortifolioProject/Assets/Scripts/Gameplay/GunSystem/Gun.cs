@@ -1,8 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using Utils.DesignPatterns;
 using Gameplay.GunSystem.Events;
+using System;
 
 
 namespace Gameplay.GunSystem
@@ -17,6 +16,7 @@ namespace Gameplay.GunSystem
         [SerializeField] private int spareAmmunition;
 
         public GunSO GunScriptableObject;
+        public GunType HolderType;
         private GunType gunType {get => GunScriptableObject.Gun; }
         private GameObject bulletPrefab {get => GunScriptableObject.BulletPrefab ;}
         private int BulletMaxQuantityPerCartridge {get => GunScriptableObject.BulletsPerCartridge;}
@@ -84,6 +84,11 @@ namespace Gameplay.GunSystem
             return spareAmmunition >= d;
         }
 
+/// <summary>
+/// This method changes the gun for one of the same type of the Holder.
+/// It's not supposed to be called directly. The responsable for that is the gunController
+/// </summary>
+/// <param name="newGun"></param>
         public void ChangeGun(GunSO newGun)
         {
             GunScriptableObject = newGun;
@@ -98,14 +103,7 @@ namespace Gameplay.GunSystem
 
         public void AddBullets(int nBullets)
         {
-            var d = BulletMaxQuantityPerCartridge - currentBulletOnCartdrige;
-            if(nBullets <= d)
-                currentBulletOnCartdrige += nBullets;
-            else 
-            {
-                currentBulletOnCartdrige += d;
-                spareAmmunition += nBullets - d;
-            }
+            spareAmmunition += nBullets;
         }
 
         private void ActivateBullet(GameObject bullet)
@@ -117,6 +115,8 @@ namespace Gameplay.GunSystem
         {
             if(Input.GetKeyDown(shootButton))
                 Shoot();
+            if(Input.GetKeyDown(KeyCode.R))
+                Recharge();
         }
     }
 

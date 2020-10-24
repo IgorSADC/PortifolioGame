@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 127932827}
   - component: {fileID: 127932830}
   - component: {fileID: 127932829}
-  - component: {fileID: 127932828}
   m_Layer: 0
   m_Name: Eye
   m_TagString: Untagged
@@ -80,19 +79,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!135 &127932828
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 127932826}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &295394007
 GameObject:
   m_ObjectHideFlags: 0
@@ -104,7 +90,6 @@ GameObject:
   - component: {fileID: 295394008}
   - component: {fileID: 295394011}
   - component: {fileID: 295394010}
-  - component: {fileID: 295394009}
   m_Layer: 0
   m_Name: Body
   m_TagString: Untagged
@@ -152,7 +137,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 4ac55173e5251044b894a47841b5581d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -173,20 +158,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!136 &295394009
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 295394007}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &474846550
 GameObject:
   m_ObjectHideFlags: 0
@@ -198,7 +169,6 @@ GameObject:
   - component: {fileID: 474846551}
   - component: {fileID: 474846554}
   - component: {fileID: 474846553}
-  - component: {fileID: 474846552}
   m_Layer: 0
   m_Name: Eye (1)
   m_TagString: Untagged
@@ -267,19 +237,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!135 &474846552
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 474846550}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1559367875003089715
 GameObject:
   m_ObjectHideFlags: 0
@@ -323,11 +280,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc545235da978144cb75c1f8237fd88e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pooledBulletsObjectsPerGun: 1
-  currentBulletQuantity: 20
+  pooledBulletsObjectsPerGun: 5
+  currentBulletOnCartdrige: 0
+  spareAmmunition: 0
   GunScriptableObject: {fileID: 11400000, guid: 9c7412197f6793a4abbe0d2ac895d2b6,
     type: 2}
-  shootButton: 0
+  HolderType: 0
+  shootButton: 324
 --- !u!1 &1561142256564411198
 GameObject:
   m_ObjectHideFlags: 0
@@ -371,11 +330,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc545235da978144cb75c1f8237fd88e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pooledBulletsObjectsPerGun: 20
-  currentBulletQuantity: 20
+  pooledBulletsObjectsPerGun: 5
+  currentBulletOnCartdrige: 0
+  spareAmmunition: 0
   GunScriptableObject: {fileID: 11400000, guid: 07f878e67c62ad94b8860359d355e3b8,
     type: 2}
-  shootButton: 0
+  HolderType: 1
+  shootButton: 323
 --- !u!1 &8338985012280833563
 GameObject:
   m_ObjectHideFlags: 0
@@ -386,8 +347,10 @@ GameObject:
   m_Component:
   - component: {fileID: 7623468124733944828}
   - component: {fileID: 1108749807}
+  - component: {fileID: 3633735073966846809}
   - component: {fileID: 1108749805}
-  m_Layer: 0
+  - component: {fileID: 836690543}
+  m_Layer: 10
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -425,6 +388,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 116
   m_CollisionDetection: 0
+--- !u!114 &3633735073966846809
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8338985012280833563}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41f09934bd5440f47bec1e2819193c25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TESTGUN: {fileID: 0}
 --- !u!114 &1108749805
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -440,6 +416,20 @@ MonoBehaviour:
   maxAcceleration: 10
   maxSpeed: 5
   rotateSpeed: 5
+--- !u!136 &836690543
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8338985012280833563}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &8668530392223141747
 GameObject:
   m_ObjectHideFlags: 0
@@ -483,11 +473,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc545235da978144cb75c1f8237fd88e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pooledBulletsObjectsPerGun: 20
-  currentBulletQuantity: 20
-  GunScriptableObject: {fileID: 11400000, guid: 07f878e67c62ad94b8860359d355e3b8,
+  pooledBulletsObjectsPerGun: 5
+  currentBulletOnCartdrige: 0
+  spareAmmunition: 0
+  GunScriptableObject: {fileID: 11400000, guid: aa06fd96706481e4387611e9d1c59ef6,
     type: 2}
-  shootButton: 0
+  HolderType: 2
+  shootButton: 102
 --- !u!1 &8677109669324408509
 GameObject:
   m_ObjectHideFlags: 0
